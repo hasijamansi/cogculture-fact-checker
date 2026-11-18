@@ -86,20 +86,16 @@ def extract_claims(document_text):
     """
 
         response = call_gemini_with_retry(prompt, max_retries=3)
+        data = json.loads(response.text)
+        claims = data.get("claims", [])
 
-    data = json.loads(response.text)
-
-    claims = data.get("claims", [])
-
-    return [
-        item["claim"]
-        for item in claims
-        if isinstance(item, dict)
-        and isinstance(item.get("claim"), str)
-        and item["claim"].strip()
-    ][:3]
-
-
+        return [
+            item["claim"]
+            for item in claims
+            if isinstance(item, dict)
+            and isinstance(item.get("claim"), str)
+            and item["claim"].strip()
+        ][:3]
 # ---------------- FACT VERIFICATION FUNCTION ----------------
 def call_gemini_with_retry(prompt, max_retries=3):
     for attempt in range(max_retries):
