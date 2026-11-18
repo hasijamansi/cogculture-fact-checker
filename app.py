@@ -29,7 +29,7 @@ except Exception as error:
     st.error(f"API connection failed: {error}")
     st.stop()
 
-MODEL = "gemini-3.6-flash"
+MODEL = "gemini-3.8-flash"
 
 # APPLICATION HEADING
 st.title("🔍 AI-Powered PDF Fact Checker")
