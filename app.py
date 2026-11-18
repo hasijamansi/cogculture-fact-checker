@@ -85,14 +85,7 @@ def extract_claims(document_text):
     {document_text}
     """
 
-    response = client.models.generate_content(
-        model=MODEL,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-            
-        )
-    )
+   response = call_gemini_with_retry(prompt, max_retries=3)
 
     data = json.loads(response.text)
 
