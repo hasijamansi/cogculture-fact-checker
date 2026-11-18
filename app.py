@@ -85,7 +85,7 @@ def extract_claims(document_text):
     {document_text}
     """
 
-   response = call_gemini_with_retry(prompt, max_retries=3)
+        response = call_gemini_with_retry(prompt, max_retries=3)
 
     data = json.loads(response.text)
 
